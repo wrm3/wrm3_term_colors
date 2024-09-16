@@ -1,5 +1,5 @@
-from pallette                import pallette
-from cls    import CLR 
+from .pallette     import pallette
+from .cls          import CLR 
 
 #<=====>#
 

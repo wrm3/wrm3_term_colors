@@ -1,7 +1,7 @@
 import os
 import random
 import re
-from pallette import pallette
+from .pallette import pallette
 
 class CLR:
     str_close = "\033[0m"

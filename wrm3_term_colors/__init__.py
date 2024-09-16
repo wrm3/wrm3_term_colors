@@ -1,7 +1,5 @@
-from .main import CLR
-from .main import cs
-from .main import cp
-from .main import c
+from .main import c, cs, cp, color_it
+from .cls import CLR
 
 from .main import B
 from .main import BoB
