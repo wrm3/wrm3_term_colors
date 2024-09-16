@@ -1,8 +1,8 @@
 # tests/test_main.py
 
 import unittest
-from wrm3_term_colors.main import cs, cp
-from wrm3_term_colors.pallette import pallette
+from src.main import cs, cp
+from src.pallette import pallette
 
 class TestMainFunctions(unittest.TestCase):
 
@@ -14,7 +14,7 @@ class TestMainFunctions(unittest.TestCase):
 
     def test_invert_hex(self):
         """Test the invert_hex function."""
-        from wrm3_term_colors.cls_wrm3_term_colors import CLR
+        from src.cls import CLR
         clr = CLR()
         self.assertEqual(clr.invert_hex('#000000'), '#FFFFFF')
         self.assertEqual(clr.invert_hex('#FFFFFF'), '#000000')
@@ -22,7 +22,7 @@ class TestMainFunctions(unittest.TestCase):
 
     def test_luminance_inverse_hex(self):
         """Test the luminance_inverse_hex function."""
-        from wrm3_term_colors.cls_wrm3_term_colors import CLR
+        from src.cls import CLR
         clr = CLR()
         self.assertEqual(clr.luminance_inverse_hex('#FFFFFF'), pallette.get('black'))
         self.assertEqual(clr.luminance_inverse_hex('#000000'), pallette.get('white'))

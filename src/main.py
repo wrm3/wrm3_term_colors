@@ -1,5 +1,5 @@
 from pallette                import pallette
-from cls_wrm3_term_colors    import CLR 
+from cls    import CLR 
 
 #<=====>#
 
