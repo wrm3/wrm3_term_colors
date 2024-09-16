@@ -14,6 +14,7 @@ class CLR:
         self.probably_will_work = False
         if os.getenv('WT_SESSION') or (os.getenv('TERM_PROGRAM') == 'vscode'):
             self.probably_will_work = True
+        self.pallette = pallette
 
     def rand_hex(self):
         """Generates a random hex color code."""
@@ -38,16 +39,23 @@ class CLR:
         """Converts an integer to a two-digit hex string."""
         return format(value, '02x')
 
-    def calculate_luminance(self, hex_str):
+    def lumi_calc(self, hex_str):
         """Calculates the luminance of a hex color code."""
         r, g, b = self.hex_to_rgb(hex_str)
         return round(0.2126 * r + 0.7152 * g + 0.0722 * b, 2)
 
-    def luminance_inverse_hex(self, hex_str):
+    def lumi_get(self, x):
+        r = self.hex_to_int(x[1:3])
+        g = self.hex_to_int(x[3:5])
+        b = self.hex_to_int(x[5:7])
+        l = round(0.2126 * r + 0.7152 * g + 0.0722 * b,2)
+        return l
+
+    def lumi_inv_hex(self, hex_str):
         """
         Determines an inverse font color based on luminance.
         """
-        luminance = self.calculate_luminance(hex_str)
+        luminance = self.lumi_calc(hex_str)
         if luminance >= 191:
             return self.name_to_hex('black')
         elif luminance >= 127:
@@ -57,7 +65,7 @@ class CLR:
         else:
             return self.name_to_hex('white')
 
-    def invert_hex(self, hex_str):
+    def inv_hex(self, hex_str):
         """
         Inverts a hex color code.
         """
@@ -133,7 +141,7 @@ class CLR:
         self.color_print('#CC3300 On #0033CC', '#CC3300', '#0033CC', italic=True)
         for color in self.pallette:
             color_hex = self.pallette[color]
-            r, g, b = self.hex2rgb(color_hex)
+            r, g, b = self.hex_to_rgb(color_hex)
             lumi = self.lumi_get(color_hex)
             self.cp('{:<35}  {:>8}  {:>3}  {:>3}  {:>3}  {:>6.2f}  {:>3}'.format(color, color_hex, r, g, b, lumi, r+g+b), self.lumi_inv_hex(color_hex), color_hex)
 
@@ -211,7 +219,7 @@ class CLR:
             row_str = ''
             cnt = 0
             print()
-            bg_color_hex = self.name2hex(bg_color)
+            bg_color_hex = self.name_to_hex(bg_color)
             # bg_lumi = self.lumi_get(bg_color_hex)
             style_color_hex = self.inv_hex(bg_color_hex)
 #            style_color_hex = self.lumi_inv_hex(bg_color_hex)
