@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wrm3_term_colors"
-version = "0.1.0"
+version = "0.1.1"
 description = "A terminal printing library that adds more color options."
 authors = [{name = "wrm3", email = "wrmartel3@gmail.com"}]
 license = {file = "LICENSE"}
